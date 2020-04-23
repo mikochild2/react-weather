@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 const api = {
   key: "5da30f169f062c2efa7163d1590436ee",
   base: "https://api.openweathermap.org/data/2.5/"
 }
+//const sun = <FontAwesomeIcon icon={faCoffee} />
 
 
 function App() {
@@ -12,11 +15,12 @@ function App() {
 
   const search = evt => {
     if (evt.key === "Enter") {
-      fetch(`${api.base}weather?q=${query}&units=imperial&APPID=${api.key}`)
+      fetch(`${api.base}weather?zip=${query},us&units=imperial&APPID=${api.key}`)
       .then(res => res.json())
       .then(result => {
         setWeather(result);
         setQuery('');
+        console.log(result);
       });
     }
   }
@@ -34,30 +38,31 @@ return `${day}, ${month} ${date}, ${year}`
 }
 
   return (
-    <div className="App warm">
+    <div className={(typeof weather.main != "undefined") ? ((weather.main.temp >60) ? 'App warm' : 'App') : 'App'}>
       <main>
         <div className="search-box">
           <input 
-          type="text" class="search-bar" placeholder="Search..."
+          type="text" class="search-bar" placeholder="Zip Code..."
           onChange={e => setQuery(e.target.value)}
           value={query}
           onKeyPress={search}
           />
         </div>
-        <div className="location-box">
-          <div className="location">Charlotte, NC</div>
-          <div className="date">   {dateBuilder(new Date)}
+        {(typeof weather.main != "undefined") ? (
+        <div>
+          <div className="location-box">
+            <div className="location"> {weather.name} </div>
+            <div className="date">   {dateBuilder(new Date)}</div>
           </div>
-
+          <div className="weather-box">
+            <div className="temp">
+              {Math.round(weather.main.temp)}°F
+            </div>
+            <div className="weather">
+              {weather.weather[0].main}</div>
+          </div>
         </div>
-        <div className="weather-box">
-          <div className="temp">
-            15°C
-          </div>
-          <div className="weather">
-            Sunny
-          </div>
-        </div>
+        ) : (<p>Please Enter a Zip Code</p>)}
       </main>
     </div>
   );

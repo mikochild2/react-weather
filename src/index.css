@@ -101,3 +101,18 @@ main {
   font-weight: 700;
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
+
+
+.weather-info i {
+  color: yellow;
+  position: relative;
+  top: 5px;
+  left: 5px;
+  animation: rotate 5s infinite linear;
+}
+
+@keyframes rotateSun {
+  to {
+    transform: rotate(360deg);
+  }
+}
