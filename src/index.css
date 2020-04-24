@@ -33,8 +33,10 @@ main {
 
 .search-box .search-bar {
   display: block;
-  width: 100%;
+  width: 50%;
   padding: 15px;
+  margin: 0 auto;
+  
 
   appearance: none;
   background: none;
@@ -43,7 +45,7 @@ main {
 
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 0px 0px 16px 16px;
-  margin-top: -25px;
+  /*margin-top: -25px;*/
 
   box-shadow: 0px 5px rgba(0, 0, 0, 0.2);
 
@@ -87,10 +89,10 @@ main {
   padding: 15px 25px;
 
   color: #fff;
-  font-size: 102px;
+  font-size: 50px;
   font-weight: 900;
 
-  text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
+  text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
   text-align: center;
   box-shadow: 3px 6px rbga(0, 0, 0, 0.2);
 }
@@ -102,17 +104,20 @@ main {
   text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
 
-
-.weather-info i {
-  color: yellow;
-  position: relative;
-  top: 5px;
-  left: 5px;
-  animation: rotate 5s infinite linear;
+.no-weather {
+  text-align: center;
 }
 
-@keyframes rotateSun {
-  to {
-    transform: rotate(360deg);
-  }
+.no-weather p {
+  color: white;
+}
+
+.no-weather img{
+  width: 50%;
+}
+
+.top-logo {
+  width: 20%;
+  display: block;
+  margin: 0 auto;
 }

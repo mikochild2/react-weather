@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-//import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import { faSun, faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import logo from './assets/weather app logo3.png';
+
+library.add(fab, faSun, faCoffee)
+
+
 const api = {
   key: "5da30f169f062c2efa7163d1590436ee",
   base: "https://api.openweathermap.org/data/2.5/"
 }
-//const sun = <FontAwesomeIcon icon={faCoffee} />
 
 
 function App() {
@@ -40,6 +46,7 @@ return `${day}, ${month} ${date}, ${year}`
   return (
     <div className={(typeof weather.main != "undefined") ? ((weather.main.temp >60) ? 'App warm' : 'App') : 'App'}>
       <main>
+      <div><img className="top-logo" src={logo} alt="logo" /></div>
         <div className="search-box">
           <input 
           type="text" class="search-bar" placeholder="Zip Code..."
@@ -61,8 +68,16 @@ return `${day}, ${month} ${date}, ${year}`
             <div className="weather">
               {weather.weather[0].main}</div>
           </div>
+          <div className="moreInfo">
+            <div> 
+              <p>Feels like: {Math.round(weather.main.feels_like)}°F </p> 
+              <p>Humidity: {weather.main.humidity} </p>
+              <p>Pressure: {weather.main.pressure} </p>
+              <p>Hi/Lo {Math.round(weather.main.temp_max)}°F/{Math.round(weather.main.temp_min)}°F  </p>
+              </div>
+          </div>
         </div>
-        ) : (<p>Please Enter a Zip Code</p>)}
+        ) : (<div class="no-weather"><p>Please enter a zip code in the box above <FontAwesomeIcon icon="sun" color="white" spin /></p></div>)} 
       </main>
     </div>
   );
