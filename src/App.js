@@ -7,6 +7,7 @@ import logo from './assets/weather app logo3.png';
 
 library.add(fab, faSun, faCoffee)
 
+var moment = require('moment');
 
 const api = {
   key: "5da30f169f062c2efa7163d1590436ee",
@@ -64,19 +65,17 @@ return `${day}, ${month} ${date}, ${year}`
           <div className="weather-box">
             <div className="temp">
               {Math.round(weather.main.temp)}°F
-            </div>
-            <div className="weather">
-              {weather.weather[0].main}</div>
-          </div>
-          <div className="moreInfo">
-            <div> 
               <p>Feels like: {Math.round(weather.main.feels_like)}°F </p> 
               <p>Humidity: {weather.main.humidity} </p>
               <p>Pressure: {weather.main.pressure} </p>
               <p>Hi/Lo {Math.round(weather.main.temp_max)}°F/{Math.round(weather.main.temp_min)}°F  </p>
-              </div>
+              <p>Sunrise: {new Date(weather.sys.sunrise).toLocaleTimeString()}</p>
+              <p>Sunset: {new Date(weather.sys.sunset).toLocaleTimeString()}</p>
+            </div>
+            <div className="weather">
+              {weather.weather[0].main}</div>
           </div>
-        </div>
+          </div>
         ) : (<div class="no-weather"><p>Please enter a zip code in the box above <FontAwesomeIcon icon="sun" color="white" spin /></p></div>)} 
       </main>
     </div>
